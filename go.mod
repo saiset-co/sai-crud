@@ -4,9 +4,9 @@ go 1.24.2
 
 require (
 	github.com/go-playground/validator/v10 v10.27.0
-	github.com/saiset-co/sai-auth v0.0.0-00010101000000-000000000000
-	github.com/saiset-co/sai-service v1.1.1
-	github.com/saiset-co/sai-storage v0.0.0-00010101000000-000000000000
+	github.com/saiset-co/sai-auth v1.1.0
+	github.com/saiset-co/sai-service v1.1.3
+	github.com/saiset-co/sai-storage v1.1.0
 	github.com/valyala/fasthttp v1.64.0
 	go.uber.org/zap v1.27.0
 )
@@ -61,7 +61,3 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/saiset-co/sai-service => ../sai-service
-replace github.com/saiset-co/sai-storage => ../sai-storage
-replace github.com/saiset-co/sai-auth => ../sai-auth
