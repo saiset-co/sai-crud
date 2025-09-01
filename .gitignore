@@ -1,4 +1,5 @@
 .idea
 webhooks.db
-config.yaml
+config.yml
+Dockerfile.local
 .env

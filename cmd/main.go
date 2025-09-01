@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/saiset-co/sai-auth/pkg/providers"
 	"log"
 
 	"go.uber.org/zap"
@@ -16,7 +17,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	srv, err := service.NewService(ctx, "./config.yaml")
+	srv, err := service.NewService(ctx, "./config.yml")
 	if err != nil {
 		log.Fatalf("Failed to create service: %v", err)
 	}
@@ -25,6 +26,13 @@ func main() {
 		sai.Logger().Error("Failed to initialize components", zap.Error(err))
 		cancel()
 		return
+	}
+
+	authServiceURL := sai.Config().GetValue("auth_providers.sai-auth.params.auth_service_url", "http://localhost:8082").(string)
+
+	authProvider := providers.NewSaiAuthProvider(sai.Config().GetConfig().Name, authServiceURL)
+	if err := sai.RegisterAuthProvider("sai-auth", authProvider); err != nil {
+		log.Fatal("Failed to register auth provider:", err)
 	}
 
 	if err := srv.Start(); err != nil {

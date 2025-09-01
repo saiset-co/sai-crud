@@ -217,7 +217,7 @@ make clean-all     # Clean everything
 │   ├── response.go        # Response types
 │   └── types.go           # Service types
 ├── scripts/               # Deployment scripts
-├── config.yaml.template   # Configuration template
+├── config.template.yml   # Configuration template
 ├── .env                   # Environment variables
 ├── Dockerfile             # Docker configuration
 ├── docker-compose.yml     # Docker Compose configuration
@@ -253,7 +253,7 @@ PASSWORD=your-password
 ```
 
 ### Outgoing Client Authentication
-Configure authentication for outgoing requests to other services (like SAI Storage). Each client can have its own authentication method and parameters configured in `config.yaml`:
+Configure authentication for outgoing requests to other services (like SAI Storage). Each client can have its own authentication method and parameters configured in `config.yml`:
 
 ```yaml
 clients:
