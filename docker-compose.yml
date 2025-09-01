@@ -1,17 +1,22 @@
 version: '3.8'
 
 services:
-  sai-service:
+  sai-crud:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: sai-service
+      context: ..
+      dockerfile: ./sai-crud/${DOCKERFILE}
+    container_name: sai-crud
+    env_file:
+      - .env
     ports:
-      - "8080:8080"
+      - "${SERVER_EXTERNAL_PORT}:${SERVER_PORT}"
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    networks:
+      - sai-network
+    volumes:
+      - ./config.template.yml:/app/config.template.yml
+
+networks:
+  sai-network:
+    name: sai-network
+    driver: bridge
