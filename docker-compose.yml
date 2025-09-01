@@ -3,8 +3,8 @@ version: '3.8'
 services:
   sai-crud:
     build:
-      context: ..
-      dockerfile: ./sai-crud/${DOCKERFILE}
+      context: .
+      dockerfile: ${DOCKERFILE}
     container_name: sai-crud
     env_file:
       - .env
