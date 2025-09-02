@@ -91,9 +91,9 @@ Content-Type: application/json
 }
 ```
 
-### Read Documents
+### List Documents
 ```http
-GET /api/v1/
+POST /api/v1/list
 Content-Type: application/json
 
 {
