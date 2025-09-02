@@ -91,9 +91,9 @@ Content-Type: application/json
 }
 ```
 
-### Чтение документов
+### Получение списка документов
 ```http
-GET /api/v1/
+POST /api/v1/list
 Content-Type: application/json
 
 {
