@@ -19,3 +19,8 @@ type DeleteResponse struct {
 	Data    []string `json:"data"`
 	Deleted int64    `json:"deleted"`
 }
+
+type AggregateResponse struct {
+	Data  []map[string]interface{} `json:"data"`
+	Total int64                    `json:"total"`
+}

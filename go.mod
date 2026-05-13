@@ -6,8 +6,9 @@ require (
 	github.com/go-playground/validator/v10 v10.27.0
 	github.com/saiset-co/sai-auth v1.1.2
 	github.com/saiset-co/sai-service v1.1.3
-	github.com/saiset-co/sai-storage v1.1.1
+	github.com/saiset-co/sai-storage v1.1.2
 	github.com/valyala/fasthttp v1.64.0
+	go.mongodb.org/mongo-driver v1.17.4
 	go.uber.org/zap v1.27.0
 )
 

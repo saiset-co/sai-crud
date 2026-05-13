@@ -82,3 +82,19 @@ func (h *Handler) Delete(ctx *saiTypes.RequestCtx) {
 
 	ctx.SuccessJSON(response)
 }
+
+func (h *Handler) Aggregate(ctx *saiTypes.RequestCtx) {
+	var req types.AggregateRequest
+	if err := ctx.ReadJSON(&req); err != nil {
+		ctx.Error(saiTypes.WrapError(err, "Invalid JSON in request body"), fasthttp.StatusBadRequest)
+		return
+	}
+
+	response, err := h.service.Aggregate(ctx, req)
+	if err != nil {
+		ctx.Error(err, fasthttp.StatusInternalServerError)
+		return
+	}
+
+	ctx.SuccessJSON(response)
+}
