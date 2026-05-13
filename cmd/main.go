@@ -74,6 +74,9 @@ func setupRoutes(handler *internal.Handler) {
 	crud.POST("/list", handler.Read).
 		WithDoc("Get Documents", "Get documents with filtering and pagination. Add ?count=1 to include total count", "documents", &types.ReadRequest{}, &types.ReadResponse{})
 
+	crud.POST("/aggregate", handler.Aggregate).
+		WithDoc("Aggregate Documents", "Aggregate documents in a collection", "documents", &types.AggregateRequest{}, &types.AggregateResponse{})
+
 	crud.PUT("/", handler.Update).
 		WithDoc("Update Documents", "Update multiple documents by filter", "documents", &types.UpdateRequest{}, &types.UpdateResponse{})
 

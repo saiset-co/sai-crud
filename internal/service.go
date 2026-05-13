@@ -25,8 +25,13 @@ func (s *Service) Create(ctx *saiTypes.RequestCtx, req types.CreateRequest) (res
 		return types.CreateResponse{}, saiTypes.WrapError(err, "validation failed")
 	}
 
+	collection := req.Prefix
+	if s.config.Collection != "" {
+		collection += "_" + s.config.Collection
+	}
+
 	storageRequest := storageTypes.CreateDocumentsRequest{
-		Collection: req.Prefix + "_" + s.config.Collection,
+		Collection: collection,
 		Data:       req.Data,
 	}
 
@@ -52,12 +57,19 @@ func (s *Service) Read(ctx *saiTypes.RequestCtx, req types.ReadRequest) (resp ty
 		return types.ReadResponse{}, saiTypes.WrapError(err, "validation failed")
 	}
 
+	collection := req.Prefix
+	if s.config.Collection != "" {
+		collection += "_" + s.config.Collection
+	}
+
 	storageRequest := storageTypes.ReadDocumentsRequest{
-		Collection: req.Prefix + "_" + s.config.Collection,
+		Collection: collection,
 		Filter:     req.Filter,
 		Limit:      req.Limit,
 		Sort:       req.Sort,
 		Skip:       req.Skip,
+		Count:      req.Count,
+		Fields:     req.IncludeFields,
 	}
 
 	storageResult, _, err := sai.ClientManager().Call("storage", "GET", "/api/v1/documents", storageRequest, nil)
@@ -82,8 +94,13 @@ func (s *Service) Update(ctx *saiTypes.RequestCtx, req types.UpdateRequest) (res
 		return types.UpdateResponse{}, saiTypes.WrapError(err, "validation failed")
 	}
 
+	collection := req.Prefix
+	if s.config.Collection != "" {
+		collection += "_" + s.config.Collection
+	}
+
 	storageRequest := storageTypes.UpdateDocumentsRequest{
-		Collection: req.Prefix + "_" + s.config.Collection,
+		Collection: collection,
 		Filter:     req.Filter,
 		Data:       req.Data,
 	}
@@ -110,8 +127,13 @@ func (s *Service) Delete(ctx *saiTypes.RequestCtx, req types.DeleteRequest) (res
 		return types.DeleteResponse{}, saiTypes.WrapError(err, "validation failed")
 	}
 
+	collection := req.Prefix
+	if s.config.Collection != "" {
+		collection += "_" + s.config.Collection
+	}
+
 	storageRequest := storageTypes.DeleteDocumentsRequest{
-		Collection: req.Prefix + "_" + s.config.Collection,
+		Collection: collection,
 		Filter:     req.Filter,
 	}
 
@@ -130,4 +152,83 @@ func (s *Service) Delete(ctx *saiTypes.RequestCtx, req types.DeleteRequest) (res
 		Deleted: result.Deleted,
 		Data:    result.Data,
 	}, nil
+}
+
+func (s *Service) Aggregate(ctx *saiTypes.RequestCtx, req types.AggregateRequest) (resp types.AggregateResponse, err error) {
+	if err := s.validator.Struct(req); err != nil {
+		return types.AggregateResponse{}, saiTypes.WrapError(err, "validation failed")
+	}
+
+	collection := req.Prefix
+	if s.config.Collection != "" {
+		collection += "_" + s.config.Collection
+	}
+
+	storageRequest := storageAggregateRequest{
+		Collection: collection,
+		Pipeline:   req.Pipeline,
+		Filter:     req.Filter,
+		GroupBy:    req.GroupBy,
+		Aggregates: convertAggregateFields(req.Aggregates),
+		Sort:       req.Sort,
+		Limit:      req.Limit,
+		Skip:       req.Skip,
+		Fields:     req.Fields,
+		Count:      req.Count,
+	}
+
+	storageResult, _, err := sai.ClientManager().Call("storage", "POST", "/api/v1/documents/aggregate", storageRequest, nil)
+	if err != nil {
+		return resp, err
+	}
+
+	var result storageAggregateResponse
+	err = ctx.Unmarshal(storageResult, &result)
+	if err != nil {
+		return resp, err
+	}
+
+	return types.AggregateResponse{
+		Data:  result.Data,
+		Total: result.Total,
+	}, nil
+}
+
+type storageAggregateField struct {
+	Field string `json:"field,omitempty"`
+	Op    string `json:"op"`
+	As    string `json:"as,omitempty"`
+}
+
+type storageAggregateRequest struct {
+	Collection string                  `json:"collection"`
+	Pipeline   types.OrderedPipeline   `json:"pipeline,omitempty"`
+	Filter     map[string]interface{}  `json:"filter,omitempty"`
+	GroupBy    []string                `json:"group_by,omitempty"`
+	Aggregates []storageAggregateField `json:"aggregates,omitempty"`
+	Sort       map[string]int          `json:"sort,omitempty"`
+	Limit      int                     `json:"limit,omitempty"`
+	Skip       int                     `json:"skip,omitempty"`
+	Fields     []string                `json:"fields,omitempty"`
+	Count      int                     `json:"count,omitempty"`
+}
+
+type storageAggregateResponse struct {
+	Data  []map[string]interface{} `json:"data"`
+	Total int64                    `json:"total"`
+}
+
+func convertAggregateFields(fields []types.AggregateField) []storageAggregateField {
+	if len(fields) == 0 {
+		return nil
+	}
+	result := make([]storageAggregateField, 0, len(fields))
+	for _, field := range fields {
+		result = append(result, storageAggregateField{
+			Field: field.Field,
+			Op:    field.Op,
+			As:    field.As,
+		})
+	}
+	return result
 }

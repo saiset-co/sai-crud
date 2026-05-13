@@ -24,7 +24,7 @@ auth_providers:
       password: "${PASSWORD}"
   token:
     params:
-      token: "${AUTH_TOKEN}"
+      token: "${TOKEN}"
 
 clients:
   enabled: ${CLIENTS_ENABLED}
@@ -36,6 +36,7 @@ clients:
           payload:
             username: "${STORAGE_USERNAME}"
             password: "${STORAGE_PASSWORD}"
+            token: "${STORAGE_TOKEN}"
 
 middlewares:
   enabled: ${MIDDLEWARES_ENABLED}

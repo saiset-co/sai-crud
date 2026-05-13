@@ -134,8 +134,8 @@ github.com/saiset-co/sai-auth v1.1.2 h1:CwMwYvKgQkafpFAXx5vR6hVoCM+x1I9D6VkKZMsg
 github.com/saiset-co/sai-auth v1.1.2/go.mod h1:SPhGkSWe3VtEHtCaaqz2/HX78wgO5GhiiGhsZlxX6Vk=
 github.com/saiset-co/sai-service v1.1.3 h1:NY50TO5U5PX0iibf1x1U42cl0JjwliTm20fBE7jG6PU=
 github.com/saiset-co/sai-service v1.1.3/go.mod h1:fWARlErL/VzKFN5VoPag9KqMLENhqGpl4bMrsZgEdC4=
-github.com/saiset-co/sai-storage v1.1.1 h1:JyloyVZvpt7CVc56hD32g1matZXCGp5/0tS7UVHgW84=
-github.com/saiset-co/sai-storage v1.1.1/go.mod h1:au8YG6iXlE6xIn3Ra/NSc1Cb0KVS7Uq7vId0UCBf34M=
+github.com/saiset-co/sai-storage v1.1.2 h1:YVnFm9vv5CGWzTNm+0vk8Wepo08KLz95DbkBWhbpeDM=
+github.com/saiset-co/sai-storage v1.1.2/go.mod h1:au8YG6iXlE6xIn3Ra/NSc1Cb0KVS7Uq7vId0UCBf34M=
 github.com/satori/go.uuid v1.2.0 h1:0uYX9dsZ2yD7q2RtLRtPSdGDWzjeM3TbMJP9utgA0ww=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/spaolacci/murmur3 v0.0.0-20180118202830-f09979ecbc72/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
@@ -170,6 +170,8 @@ github.com/xyproto/randomstring v1.0.5 h1:YtlWPoRdgMu3NZtP45drfy1GKoojuR7hmRcnhZ
 github.com/xyproto/randomstring v1.0.5/go.mod h1:rgmS5DeNXLivK7YprL0pY+lTuhNQW3iGxZ18UQApw/E=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
+go.mongodb.org/mongo-driver v1.17.4 h1:jUorfmVzljjr0FLzYQsGP8cgN/qzzxlY9Vh0C9KFXVw=
+go.mongodb.org/mongo-driver v1.17.4/go.mod h1:Hy04i7O2kC4RS06ZrhPRqj/u4DTYkFDAAccj+rVKqgQ=
 go.opencensus.io v0.22.5 h1:dntmOdLpSpHlVqbW5Eay97DelsZHe+55D+xC6i0dDS0=
 go.opencensus.io v0.22.5/go.mod h1:5pWMHQbX5EPX2/62yrJeAkowc+lfs/XD7Uxpq3pI6kk=
 go.uber.org/goleak v1.3.0 h1:2K3zAYmnTNqV73imy9J1T3WC+gmCePx2hEGkimedGto=
