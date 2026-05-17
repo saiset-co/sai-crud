@@ -49,12 +49,12 @@ middlewares:
       AllowedHeaders: ["Content-Type", "Authorization", "X-API-Key", "X-Request-ID"]
       MaxAge: ${CORS_MAX_AGE}
   logging:
-    enabled: ${REQUEST_LOGGING_ENABLED}
+    enabled: ${LOGGING_ENABLED}
     weight: 20
     params:
-      log_level: "${REQUEST_LOG_LEVEL}"
-      log_headers: ${REQUEST_LOG_HEADERS}
-      log_body: ${REQUEST_LOG_BODY}
+      log_level: "${LOGGING_LOG_LEVEL}"
+      log_headers: ${LOGGING_LOG_HEADERS}
+      log_body: ${LOGGING_LOG_BODY}
   recovery:
     enabled: ${RECOVERY_ENABLED}
     weight: 5
@@ -66,11 +66,11 @@ middlewares:
     params:
       provider: "${AUTH_PROVIDER}"
 
-crud:
-  collection: "${COLLECTION_NAME}"
-
 health:
   enabled: ${HEALTH_ENABLED}
 
 docs:
   enabled: ${DOCS_ENABLED}
+
+crud:
+  collection: "${COLLECTION_NAME}"
