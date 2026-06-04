@@ -35,7 +35,7 @@ func (s *Service) Create(ctx *saiTypes.RequestCtx, req types.CreateRequest) (res
 		Data:       req.Data,
 	}
 
-	storageResult, _, err := sai.ClientManager().Call("storage", "POST", "/api/v1/documents", storageRequest, nil)
+	storageResult, _, err := sai.ClientManager().CallWithContext(ctx, "storage", "POST", "/api/v1/documents", storageRequest, nil)
 	if err != nil {
 		return resp, err
 	}
@@ -72,7 +72,7 @@ func (s *Service) Read(ctx *saiTypes.RequestCtx, req types.ReadRequest) (resp ty
 		Fields:     req.IncludeFields,
 	}
 
-	storageResult, _, err := sai.ClientManager().Call("storage", "GET", "/api/v1/documents", storageRequest, nil)
+	storageResult, _, err := sai.ClientManager().CallWithContext(ctx, "storage", "GET", "/api/v1/documents", storageRequest, nil)
 	if err != nil {
 		return resp, err
 	}
@@ -105,7 +105,7 @@ func (s *Service) Update(ctx *saiTypes.RequestCtx, req types.UpdateRequest) (res
 		Data:       req.Data,
 	}
 
-	storageResult, _, err := sai.ClientManager().Call("storage", "PUT", "/api/v1/documents", storageRequest, nil)
+	storageResult, _, err := sai.ClientManager().CallWithContext(ctx, "storage", "PUT", "/api/v1/documents", storageRequest, nil)
 	if err != nil {
 		return resp, saiTypes.WrapError(err, "failed to update documents")
 	}
@@ -137,7 +137,7 @@ func (s *Service) Delete(ctx *saiTypes.RequestCtx, req types.DeleteRequest) (res
 		Filter:     req.Filter,
 	}
 
-	storageResult, _, err := sai.ClientManager().Call("storage", "DELETE", "/api/v1/documents", storageRequest, nil)
+	storageResult, _, err := sai.ClientManager().CallWithContext(ctx, "storage", "DELETE", "/api/v1/documents", storageRequest, nil)
 	if err != nil {
 		return resp, err
 	}
@@ -177,7 +177,7 @@ func (s *Service) Aggregate(ctx *saiTypes.RequestCtx, req types.AggregateRequest
 		Count:      req.Count,
 	}
 
-	storageResult, _, err := sai.ClientManager().Call("storage", "POST", "/api/v1/documents/aggregate", storageRequest, nil)
+	storageResult, _, err := sai.ClientManager().CallWithContext(ctx, "storage", "POST", "/api/v1/documents/aggregate", storageRequest, nil)
 	if err != nil {
 		return resp, err
 	}
@@ -217,6 +217,7 @@ type storageAggregateResponse struct {
 	Data  []map[string]interface{} `json:"data"`
 	Total int64                    `json:"total"`
 }
+
 
 func convertAggregateFields(fields []types.AggregateField) []storageAggregateField {
 	if len(fields) == 0 {
