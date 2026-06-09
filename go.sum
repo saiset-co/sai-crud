@@ -132,8 +132,8 @@ github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncj
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
 github.com/saiset-co/sai-auth v1.1.2 h1:CwMwYvKgQkafpFAXx5vR6hVoCM+x1I9D6VkKZMsgSKM=
 github.com/saiset-co/sai-auth v1.1.2/go.mod h1:SPhGkSWe3VtEHtCaaqz2/HX78wgO5GhiiGhsZlxX6Vk=
-github.com/saiset-co/sai-service v1.1.11 h1:kMw4SyEO5i2kSCjHHxvQ7QCyQy6duGBytP/oToqMXEk=
-github.com/saiset-co/sai-service v1.1.11/go.mod h1:fWARlErL/VzKFN5VoPag9KqMLENhqGpl4bMrsZgEdC4=
+github.com/saiset-co/sai-service v1.1.19 h1:HjxC2sfjL5Er7GPdkU2OnJ4J1oxENEFVYVBdOTPzSfU=
+github.com/saiset-co/sai-service v1.1.19/go.mod h1:fWARlErL/VzKFN5VoPag9KqMLENhqGpl4bMrsZgEdC4=
 github.com/saiset-co/sai-storage v1.1.2 h1:YVnFm9vv5CGWzTNm+0vk8Wepo08KLz95DbkBWhbpeDM=
 github.com/saiset-co/sai-storage v1.1.2/go.mod h1:au8YG6iXlE6xIn3Ra/NSc1Cb0KVS7Uq7vId0UCBf34M=
 github.com/satori/go.uuid v1.2.0 h1:0uYX9dsZ2yD7q2RtLRtPSdGDWzjeM3TbMJP9utgA0ww=
