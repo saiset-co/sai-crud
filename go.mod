@@ -5,7 +5,7 @@ go 1.24.2
 require (
 	github.com/go-playground/validator/v10 v10.27.0
 	github.com/saiset-co/sai-auth v1.1.2
-	github.com/saiset-co/sai-service v1.1.11
+	github.com/saiset-co/sai-service v1.1.19
 	github.com/saiset-co/sai-storage v1.1.2
 	github.com/valyala/fasthttp v1.64.0
 	go.mongodb.org/mongo-driver v1.17.4
